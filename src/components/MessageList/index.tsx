@@ -57,15 +57,28 @@ export function MessageList() {
 
       <ul className={styles.messageList}>
         {messages.map((message) => {
+          console.log(message);
           return (
             <li key={message.id} className={styles.message}>
               <p className={styles.messageContent}>{message.text}</p>
-              <div className={styles.messageUser}>
-                <div className={styles.userImage}>
-                  <img src={message.user.avatar_url} alt={message.user.name} />
+
+              <a
+                href={`https://github.com/${message.user.login}`}
+                target="_blank"
+              >
+                <div className={styles.messageUser}>
+                  <div className={styles.userImage}>
+                    <img
+                      src={message.user.avatar_url}
+                      alt={message.user.name}
+                    />
+                  </div>
+                  <div className={styles.userInformations}>
+                    <span>{message.user.name}</span>
+                    <sub>{message.user.location}</sub>
+                  </div>
                 </div>
-                <span>{message.user.name}</span>
-              </div>
+              </a>
             </li>
           );
         })}
